@@ -1,5 +1,7 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
+import pl.coderslab.beskidyenduranceproject.entity.Trail;
+
 import javax.validation.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;

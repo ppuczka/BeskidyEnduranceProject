@@ -1,21 +1,23 @@
-spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-    jpa:
-      database-platform: org.hibernate.dialect.MySQL5Dialect
-      show-sql: true
-      generate-ddl: true
-      hibernate:
-              ddl-auto: create
-  datasource:
-    platform: mysql
-    url: jdbc:mysql://localhost:3306/beskidy?useSSL=false&useTimezone=true&serverTimezone=UTC
-    username: root
-    password: coderslab
-    driverClassName: com.mysql.jdbc.Driver
-  security:
-    user:
-      name: admin
-      password: admin
+#spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+#    jpa:
+#      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#      show-sql: true
+#      generate-ddl: true
+#      properties: hibernate.format_sql = true
+#      hibernate:
+#              ddl-auto: update
+#
+#  datasource:
+#    platform: mysql
+#    url: jdbc:mysql://localhost:3306/beskidy?useSSL=false&useTimezone=true&serverTimezone=UTC
+#    username: root
+#    password: coderslab
+#
+#  security:
+#    user:
+#      name: admin
+#      password: admin

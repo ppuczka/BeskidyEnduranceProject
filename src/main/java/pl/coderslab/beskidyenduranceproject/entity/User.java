@@ -33,6 +33,8 @@ public class User {
     @NotEmpty
     private String password;
 
+    private boolean enabled;
+
     @NotEmpty
     @Email
     @Column(unique = true)
