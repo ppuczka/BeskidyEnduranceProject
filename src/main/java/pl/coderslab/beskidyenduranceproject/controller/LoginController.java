@@ -1,0 +1,63 @@
+package pl.coderslab.beskidyenduranceproject.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import pl.coderslab.beskidyenduranceproject.entity.User;
+import pl.coderslab.beskidyenduranceproject.service.UserService;
+
+import javax.validation.Valid;
+
+@Controller
+public class LoginController {
+
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    public String login(Model model) {
+        return "login";
+
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "/forms/register";
+
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String createNewUser(@Valid User user, BindingResult result, Model model) {
+        User userExists = userService.findUserByEmail(user.getEmail());
+        if (userExists != null) {
+            result.rejectValue("email", "error.user",
+                    "Użytkownik o podanym adresie istnieje");
+        }
+        if(result.hasErrors()) {
+            return "forms/register";
+        } else {
+            userService.saveUser(user);
+            model.addAttribute("successMessage", "Użytkownik został zarejetrowany, otrzymasz email z potwierdzeniem");
+            //czy dodawać obiekt do modelu i wracać go do widoku
+            return "/forms/register";
+        }
+
+    }
+
+    @RequestMapping(value= "/admin/home", method = RequestMethod.GET)
+    public String home(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        model.addAttribute("user", user);
+        return "/admin/home";
+
+    }
+
+}

@@ -30,16 +30,12 @@ public class User {
     @Column(length = 100)
     private String lastName;
 
-    @NotEmpty
-    @Size(max = 50)
-    @Column(nullable = false, unique = true)
-    private String username;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId"),
                     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @NotEmpty
     private String password;
 
     private int active;

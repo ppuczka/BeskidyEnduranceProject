@@ -2,14 +2,18 @@ package pl.coderslab.beskidyenduranceproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-import javax.persistence.Entity;
 
 @SpringBootApplication
-//@EntityScan(basePackages = {"pl.coderslab.beskidyenduranceproject.entity"})
-public class BeskidyEnduranceProjectApplication {
+public class BeskidyEnduranceProjectApplication extends SpringBootServletInitializer {
+
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(BeskidyEnduranceProjectApplication.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BeskidyEnduranceProjectApplication.class, args);
