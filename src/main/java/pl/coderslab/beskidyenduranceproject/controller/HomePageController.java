@@ -21,17 +21,19 @@ public class HomePageController {
 
 
 
-    UserRepository userRepository;
+
     TrailRepository trailRepository;
     MountainRepository mountainRepository;
     TownRepository townRepository;
 
 
     @Autowired
-    public HomePageController(UserRepository userRepository, MountainRepository mountainRepository,
+    public HomePageController(MountainRepository mountainRepository,
                               TrailRepository trailRepository, TownRepository townRepository) {
-        this.userRepository = userRepository;
+
         this.mountainRepository = mountainRepository;
+        this.townRepository = townRepository;
+        this.trailRepository = trailRepository;
 
     }
 
