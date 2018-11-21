@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.beskidyenduranceproject.entity.User;
+import pl.coderslab.beskidyenduranceproject.service.EmailSerivice;
 import pl.coderslab.beskidyenduranceproject.service.UserService;
 
 import javax.validation.Valid;
@@ -18,6 +19,8 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmailSerivice emailSerivice;
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login(Model model) {
@@ -33,8 +36,10 @@ public class LoginController {
 
     }
 
+    // error do widoku
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createNewUser(@Valid User user, BindingResult result, Model model) {
+    public String createNewUser(@Valid User user, BindingResult result, Model model) throws Exception {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             result.rejectValue("email", "error.user",
@@ -44,6 +49,7 @@ public class LoginController {
             return "forms/register";
         } else {
             userService.saveUser(user);
+            emailSerivice.sendEmail(user);
             model.addAttribute("successMessage", "Użytkownik został zarejetrowany, otrzymasz email z potwierdzeniem");
             //czy dodawać obiekt do modelu i wracać go do widoku
             return "/forms/register";
