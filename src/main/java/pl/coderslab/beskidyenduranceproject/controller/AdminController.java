@@ -15,6 +15,8 @@ import pl.coderslab.beskidyenduranceproject.repository.TownRepository;
 import pl.coderslab.beskidyenduranceproject.repository.TrailRepository;
 import pl.coderslab.beskidyenduranceproject.repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -40,14 +42,17 @@ public class AdminController {
     }
 //NEXT STEP - podzielić na 4 grupy dodac buttony do panelu administracyjnego, dodac funkcje dodania trasy gory i miasta
 
-    @RequestMapping(value = "/homePage", method = RequestMethod.GET)
-    public String homePage(Model model) {
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String homePage(Model model, HttpServletRequest request) {
 
         List<Mountain> mountains = mountainRepository.findAll();
         List<Town> towns = townRepository.findAll();
         List<User> users = userRepository.findAll();
         List<Trail> trails = trailRepository.findAll();
 
+        Principal principal = request.getUserPrincipal();
+
+            model.addAttribute("userName", principal.getName());
             model.addAttribute("mountains", mountains);
             model.addAttribute("towns", towns);
             model.addAttribute("users", users);

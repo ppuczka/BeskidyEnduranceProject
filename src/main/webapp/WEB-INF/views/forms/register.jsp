@@ -1,57 +1,102 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <head>
-    <title>Register</title>
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-    <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p,
-    .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso
-    form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>Beskidy Endurance</title>
+    <!-- Bootstrap core CSS -->
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <link href="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>" rel="stylesheet" id="bootstrap-css">
+    <script src="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"/>"></script>
+    <script src="<c:url value ="//code.jquery.com/jquery-1.11.1.min.js"/>"></script>
+    <link href="<c:url value="/resources/static/main.css" />" rel="stylesheet">
+    <link href="<c:url value ="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>" rel="stylesheet">
 
 </head>
 <body>
-<div class="bootstrap-iso">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
+
+<%--<div class="bootstrap-iso">--%>
+    <%--<div class="container-fluid">--%>
+        <%--<div class="row">--%>
+            <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
+
+                    <%--<div class="form-group ">--%>
+                    <%--<label class="control-label " for="name">--%>
+                            <%--Imię--%>
+                    <%--</label>--%>
+                       <%----%>
+                    <%--</div>--%>
+                    <%--<div class="form-group ">--%>
+                        <%--<label class="control-label " for="name3">--%>
+                            <%--Nazwisko--%>
+                        <%--</label>--%>
+                        <%--&lt;%&ndash;<form:input path="lastName" class="form-control" id="name3"/>&ndash;%&gt;--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group ">--%>
+                        <%--<label class="control-label " for="email">--%>
+                            <%--Email--%>
+                        <%--</label>--%>
+                        <%--&lt;%&ndash;<form:input path="email"  class="form-control" id="email"/>&ndash;%&gt;--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group ">--%>
+                        <%--<label class="control-label " for="password">--%>
+                            <%--Hasło--%>
+                        <%--</label>--%>
+                        <%--<form:password path="password" class="form-control" id="password"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<div>--%>
+                            <%--<input class="btn btn-primary " name="submit" type="submit">--%>
+                                <%--Submit--%>
+                            <%--</input>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</form:form>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+
+<%--</body>--%>
+<%--</html>--%>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
                 <form:form method="post" modelAttribute="user">
-                    <div class="form-group ">
-                    <label class="control-label " for="name">
-                            Imię
-                    </label>
-                        <form:input path="firstName" class="form-control" id="name"/>
-                    </div>
-                    <div class="form-group ">
-                        <label class="control-label " for="name3">
-                            Nazwisko
-                        </label>
-                        <form:input path="lastName" class="form-control" id="name3"/>
-                    </div>
-                    <div class="form-group ">
-                        <label class="control-label " for="email">
-                            Email
-                        </label>
-                        <form:input path="email"  class="form-control" id="email"/>
-                    </div>
-                    <div class="form-group ">
-                        <label class="control-label " for="password">
-                            Hasło
-                        </label>
-                        <form:password path="password" class="form-control" id="password"/>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <input class="btn btn-primary " name="submit" type="submit">
-                                Submit
-                            </input>
-                        </div>
-                    </div>
+                    <h4>Tworzenie nowego konta użytkownika</h4><br/>
+                    <form:input path="firstName" class="form-control input-sm chat-input" placeholder="Imię"/>
+                    <form:errors path="firstName" class="error"></form:errors>
+                    <br/><br/>
+                    <form:input path="lastName" class="form-control input-sm chat-input" placeholder="Nazwisko"/>
+                    <form:errors path="lastName" class="error"></form:errors>
+                    <br/><br/>
+                    <form:input path="email"  class="form-control input-sm chat-input" placeholder="Email"/>
+                    <form:errors path="email" class="error"></form:errors>
+                    <br/><br/>
+                    <form:password path="password" class="form-control input-sm chat-input" placeholder="Hasło"/>
+                    <form:errors path="password" class="error"></form:errors>"
+                    <p class="succesMessage">${successMessage}</p>
+                    <br/><br/>
+                    <input type="submit" value="Utwórz konto" id="button" class="btn btn-primary btn-md">
                 </form:form>
+                <div class="wrapper">
+                </div>
+
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

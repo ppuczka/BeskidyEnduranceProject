@@ -16,7 +16,7 @@ import pl.coderslab.beskidyenduranceproject.repository.UserRepository;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/logged")
 public class HomePageController {
 
 
@@ -38,7 +38,7 @@ public class HomePageController {
     }
 
 
-    @RequestMapping(path = "/addTrail", method = RequestMethod.GET)
+    @RequestMapping(path = "/mainPage", method = RequestMethod.GET)
     public String mainPage(Model model) {
         List<Mountain> mountains = mountainRepository.findAll();
         List<Town> towns = townRepository.findAll();
@@ -48,7 +48,7 @@ public class HomePageController {
 //        model.addAttribute("towns", towns);
 //        model.addAttribute("mountains", mountains);
 
-        return "/forms/addTrail";
+        return "/main";
     }
 
 }

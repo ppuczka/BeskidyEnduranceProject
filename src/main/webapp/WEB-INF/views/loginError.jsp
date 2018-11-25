@@ -34,7 +34,9 @@
 				<input type="text" id="username" name="email" class="form-control input-sm chat-input" placeholder="email" />
 					</br>
 				<input type="password" id="password" name="password" class="form-control input-sm chat-input" placeholder="hasło" />
-				</br>
+					<div class="error">${error}</div>
+					<br/>
+					</br>
 					<input type="submit" value="Zaloguj" class="btn btn-primary btn-md">
 				</form>
 				<div class="wrapper">

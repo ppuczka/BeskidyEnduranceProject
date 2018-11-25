@@ -48,12 +48,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
 //       /         .antMatchers("/addTrail").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/login/error").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
+                .loginPage("/login").failureUrl("/login/error")
+                .defaultSuccessUrl("/logged/mainPage")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()
@@ -67,7 +68,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/resources/**", "/resources/static/**", "/css/**", "/js/**", "/images/**",
+                        "/webapp/resources/**");
 
     }
 

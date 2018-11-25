@@ -20,12 +20,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @NotEmpty
+    @NotEmpty(message = "Pole nie może być puste")
     @Size(max = 100)
     @Column(length = 100)
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "Pole nie może być puste")
     @Size(max = 100)
     @Column(length = 100)
     private String lastName;
@@ -35,12 +35,12 @@ public class User {
                     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @NotEmpty
+    @NotEmpty(message = "Pole nie może być puste")
     private String password;
 
     private int active;
 
-    @NotEmpty
+    @NotEmpty(message = "Pole nie może być puste")
     @Email(message = "Podaj poprawny adres e-mail")
     @Column(unique = true)
     private String email;
