@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
 
@@ -16,7 +17,6 @@
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
@@ -43,7 +43,7 @@
                     <a class="nav-link" href="/register">Rejestracja</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login" style="color:lawngreen">Logowanie</a>
+                    <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj</a>
                 </li>
             </ul>
         </div>
@@ -51,17 +51,11 @@
 </nav>
 <div id="page-content-wrapper">
 <div id="wrapper">
-
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
-            <li>
-                <a href="#">Dashboard</a>
+            <br/>
             </li>
             <li>
                 <a href="#">Shortcuts</a>
@@ -81,6 +75,13 @@
             <li>
                 <a href="#">Contact</a>
             </li>
+            <li>
+                <label for="exampleInputEmail1"></label>
+            <form:form method="get" action="logged/search" class="form-control" cssStyle="background: black">
+                <form:input path="trails" placeholder="Wyszukiwanie..."  class="form-control" id="exampleInputEmail1"  /><br/>
+                <input type="submit" value="Wyszukaj" class="btn btn-success btn-xs"/>
+            </form:form>
+            </li>
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -88,20 +89,15 @@
     <!-- Page Content -->
 
         <div class="container-fluid">
-            <h1>Simple Sidebar</h1>
-            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+            <br/><br/><br/>
+            <p class="logged" style="text-align: right">Witaj ${user.firstName}</p>
+            <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Rozwiń menu</a>
         </div>
     </div>
     <!-- /#page-content-wrapper -->
 
 </div>
-<!-- /#wrapper -->
 
-
-<!-- Page Content -->
-<!-- Bootstrap core JavaScript -->
 <script src="<c:url value="/resources/static/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/static/js/bootstrap.bundle.min.js"/>"></script>
 

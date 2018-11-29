@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "beskidyenduranceproject",
+                "projectName": "beskidyenduranceproject",
+                "workingDirectory": "/Users/vampirec/Desktop/prework/BeskidyEnduranceProject",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "beskidyenduranceproject",
+                "projectName": "beskidyenduranceproject",
+                "workingDirectory": "/Users/vampirec/Desktop/prework/BeskidyEnduranceProject",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

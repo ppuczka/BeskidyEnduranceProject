@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BeskidyEnduranceProjectApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "pl.coderslab.beskidyenduranceproject.BeskidyEnduranceProjectApplication",
+            "args": "",
+            "projectName": "beskidyenduranceproject"
+        }
+    ]
+}

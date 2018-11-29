@@ -45,6 +45,7 @@ public class HomePageController {
         User user = new User();
         user.setFirstName("user");
         model.addAttribute("user", user);
+        model.addAttribute("search");
 //        model.addAttribute("towns", towns);
 //        model.addAttribute("mountains", mountains);
 
