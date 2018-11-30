@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.coderslab.beskidyenduranceproject.entity.Mountain;
 import pl.coderslab.beskidyenduranceproject.entity.Town;
 import pl.coderslab.beskidyenduranceproject.entity.Trail;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
+@SessionAttributes("loggedUserName")
 public class AdminController {
 
 
@@ -52,7 +54,7 @@ public class AdminController {
 
         Principal principal = request.getUserPrincipal();
 
-            model.addAttribute("userName", principal.getName());
+            model.addAttribute("loggedUserName", principal.getName());
             model.addAttribute("mountains", mountains);
             model.addAttribute("towns", towns);
             model.addAttribute("users", users);
@@ -60,6 +62,24 @@ public class AdminController {
 
             return "/admin/home";
 
+    }
+
+
+    @RequestMapping(value = "/towns", method = RequestMethod.GET)
+    public String townsPage(Model model) {
+
+        List<Town> towns = townRepository.findAll();
+        model.addAttribute("towns", towns);
+
+        return "/admin/towns";
+    }
+
+    @RequestMapping(value = "/addTown", method = RequestMethod.GET)
+    public String addTown(Model model) {
+        Town town = new Town();
+        model.addAttribute("town", town);
+
+        return "admin/forms/addTown";
     }
 
 }

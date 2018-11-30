@@ -11,9 +11,8 @@
 
 </head>
 <body>
-<h5>Witaj ${user.firstName}</h5>
-<br/><br/><br/>
-<div class="title">Author form</div>
+<%@include file="/WEB-INF/views/partials/adminNavBar.jsp"%>
+<br/>
 
 <%--<form:form method="post" modelAttribute="trail">--%>
 

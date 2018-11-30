@@ -45,7 +45,7 @@
             </li>
 
         </ul>
-        <span class="navbar-text">Zalogowany jako: ${userName}</span>
+        <span class="navbar-text">Zalogowany jako: ${loggedUserName}</span>
         <div style="padding-left: 50px"></div><a href="/logout" class="btn btn-success btn-sm my-2 my-sm-0">Wyloguj</a></div>
         </div>
 </nav>

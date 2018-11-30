@@ -75,12 +75,12 @@
             <li>
                 <a href="#">Contact</a>
             </li>
-            <li>
+            <li style="background: black;">
                 <label for="exampleInputEmail1"></label>
-            <form:form method="get" action="logged/search" class="form-control" cssStyle="background: black">
-                <form:input path="trails" placeholder="Wyszukiwanie..."  class="form-control" id="exampleInputEmail1"  /><br/>
+            <form method="get" action="/logged/search" class="form-control" style="background: black">
+                <input type="text" placeholder="Wyszukiwanie..." class="form-control" id="exampleInputEmail1"/><br/>
                 <input type="submit" value="Wyszukaj" class="btn btn-success btn-xs"/>
-            </form:form>
+            </form>
             </li>
         </ul>
     </div>
