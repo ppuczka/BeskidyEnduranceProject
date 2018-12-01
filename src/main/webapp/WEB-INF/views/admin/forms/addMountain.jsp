@@ -15,38 +15,31 @@
 <%@include file="/WEB-INF/views/partials/adminNavBar.jsp"%>
 <br/>
 
-
 <div class="bootstrap-iso">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <form:form modelAttribute="town" method="post">
+                <form:form modelAttribute="mountain" method="post">
                     <div class="form-group ">
                         <label class="control-label " for="name">
                             Nazwa
                         </label>
-                        <form:input path="name" class="form-control" name="name" ></form:input>
-                        <form:errors path="name" class="error"></form:errors>
+                        <form:input path="name" class="form-control" name="name" />
+                        <form:errors path="name" class="error"/>
                     </div>
                     <div class="form-group ">
                         <label class="control-label requiredField">
                             Wysokoś n.p.m
                         </label>
-                        <form:input path="height" class="form-control" ></form:input>
-                        <form:errors path="height" class="error"></form:errors>
-                    </div>
-                    <div class="form-group ">
-                        <label class="control-label requiredField" >
-                            Opis
-                        </label>
-                        <form:textarea path="decription" cols="40" rows="10" class="form-control" ></form:textarea>
+                        <form:input path="height" class="form-control"/>
+                        <form:errors path="height" class="error"/>
                     </div>
                     <div>
                         <label class="control-label " for="select1">
                             Trasy
                         </label>
                         <form:select path="trailList" multiple="true" items="${trails}" itemValue="trailId" itemLabel="name" class="select form-control" name="select1"/>
-                    <br/>
+                        <br/>
                     </div>
                     <br/>
                     <div class="form-group">
@@ -61,8 +54,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 

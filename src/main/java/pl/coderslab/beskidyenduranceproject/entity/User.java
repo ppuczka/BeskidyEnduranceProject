@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -48,6 +49,7 @@ public class User {
     @ManyToMany
     private List<Trail> trails;
 
+    private Date created;
 
 //    @OneToMany
 //    private List<Message> messageList;

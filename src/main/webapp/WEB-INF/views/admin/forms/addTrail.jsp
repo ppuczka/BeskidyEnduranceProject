@@ -1,5 +1,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,13 +13,11 @@
 <body>
 <%@include file="/WEB-INF/views/partials/adminNavBar.jsp"%>
 <br/>
-
-
 <div class="bootstrap-iso">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <form:form modelAttribute="town" method="post">
+                <form:form modelAttribute="trail" method="post">
                     <div class="form-group ">
                         <label class="control-label " for="name">
                             Nazwa
@@ -30,23 +27,45 @@
                     </div>
                     <div class="form-group ">
                         <label class="control-label requiredField">
-                            Wysokoś n.p.m
+                            Długość
                         </label>
-                        <form:input path="height" class="form-control" ></form:input>
-                        <form:errors path="height" class="error"></form:errors>
+                        <form:input path="length" class="form-control" />
+                        <form:errors path="length" class="error"/>
                     </div>
                     <div class="form-group ">
-                        <label class="control-label requiredField" >
-                            Opis
+                        <label class="control-label requiredField">
+                            Suma przewyższeń
                         </label>
-                        <form:textarea path="decription" cols="40" rows="10" class="form-control" ></form:textarea>
+                        <form:input path="uphill" class="form-control" />
+                        <form:errors path="uphill" class="error"/>
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label requiredField">
+                            Stopień trudności
+                        </label>
+                        <form:select path="difficluty" items="${difficulty}" class="select form-control"/>
+                        <form:errors path="difficluty" class="error"/>
+                    </div>
+                        <div class="form-group ">
+                        <label class="control-label requiredField" >
+                            Typ
+                        </label>
+                            <form:select path="type" items="${trailTypes}" class="select form-control"/>
+                            <form:errors path="type" class="error"/>
+                        </div>
+                    <div>
+                        <label class="control-label " for="select1">
+                            Góry
+                        </label>
+                        <form:select path="mountains" multiple="true" items="${mountains}" itemValue="mountainId" itemLabel="name" class="select form-control" name="select1"/>
+                        <br/>
                     </div>
                     <div>
                         <label class="control-label " for="select1">
-                            Trasy
+                            Miasta
                         </label>
-                        <form:select path="trailList" multiple="true" items="${trails}" itemValue="trailId" itemLabel="name" class="select form-control" name="select1"/>
-                    <br/>
+                        <form:select path="towns" multiple="true" items="${towns}" itemValue="townId" itemLabel="name" class="select form-control" name="select1"/>
+                        <br/>
                     </div>
                     <br/>
                     <div class="form-group">
@@ -61,7 +80,6 @@
         </div>
     </div>
 </div>
-
 
 
 

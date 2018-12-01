@@ -1,12 +1,20 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.coderslab.beskidyenduranceproject.entity.Trail;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "mountains")
 public class Mountain {
@@ -17,55 +25,15 @@ public class Mountain {
 
     @Size(max = 50)
     @Column(length = 50, unique = true)
-    @NotEmpty
+    @NotEmpty(message = "Pole nie może być puste")
     private String name;
 
-
-    @NotEmpty
+    @NotNull(message = "Pole nie może być puste")
+    @DecimalMin(value = "5", message = "Podana wartość musi być większa od 5")
     private int height;
 
     @ManyToMany(mappedBy = "mountains")
-    @NotEmpty
-    private List<Trail> trails;
+    private List<Trail> trailList;
 
-    public Mountain() {
-    }
 
-    public Mountain(String name, int height, List<Trail> trails) {
-        this.name = name;
-        this.height = height;
-        this.trails = trails;
-    }
-
-    public long getMountainId() {
-        return mountainId;
-    }
-
-    public void setMountainId(long mountainId) {
-        this.mountainId = mountainId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public List<Trail> getTrails() {
-        return trails;
-    }
-
-    public void setTrails(List<Trail> trails) {
-        this.trails = trails;
-    }
 }
