@@ -36,8 +36,8 @@
                 <td>${trail.type}</td>
                 <td>${trail.length}</td>
                 <td>${trail.difficluty}</td>
-                <td><a href="/admin/showTowns/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl miasta</a></td>
                 <td><a href="/admin/showMountains/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl gory</a></td>
+                <td><a href="/admin/showTowns/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl miasta</a></td>
                 <td><a href="/admin/deleteTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Usuń </a>
                     <a href="/admin/editTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Edytuj</a></td>
             </tr>

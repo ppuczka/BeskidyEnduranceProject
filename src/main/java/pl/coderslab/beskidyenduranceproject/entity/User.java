@@ -1,6 +1,7 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -8,7 +9,8 @@ import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -49,15 +51,13 @@ public class User {
     @ManyToMany
     private List<Trail> trails;
 
+    @CreationTimestamp
     private Date created;
 
-//    @OneToMany
-//    private List<Message> messageList;
+    @OneToMany(mappedBy = "receiver")
+    private List<Message> received = new ArrayList<>();
 
     private long points;
-
-//     do relacji potrzebne ranks, challenges, messages,
-
 
 
 }

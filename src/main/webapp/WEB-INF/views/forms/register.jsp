@@ -23,52 +23,6 @@
 
 </head>
 <body>
-
-<%--<div class="bootstrap-iso">--%>
-    <%--<div class="container-fluid">--%>
-        <%--<div class="row">--%>
-            <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
-
-                    <%--<div class="form-group ">--%>
-                    <%--<label class="control-label " for="name">--%>
-                            <%--Imię--%>
-                    <%--</label>--%>
-                       <%----%>
-                    <%--</div>--%>
-                    <%--<div class="form-group ">--%>
-                        <%--<label class="control-label " for="name3">--%>
-                            <%--Nazwisko--%>
-                        <%--</label>--%>
-                        <%--&lt;%&ndash;<form:input path="lastName" class="form-control" id="name3"/>&ndash;%&gt;--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group ">--%>
-                        <%--<label class="control-label " for="email">--%>
-                            <%--Email--%>
-                        <%--</label>--%>
-                        <%--&lt;%&ndash;<form:input path="email"  class="form-control" id="email"/>&ndash;%&gt;--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group ">--%>
-                        <%--<label class="control-label " for="password">--%>
-                            <%--Hasło--%>
-                        <%--</label>--%>
-                        <%--<form:password path="password" class="form-control" id="password"/>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<div>--%>
-                            <%--<input class="btn btn-primary " name="submit" type="submit">--%>
-                                <%--Submit--%>
-                            <%--</input>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</form:form>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-<%--</body>--%>
-<%--</html>--%>
-
 <!-- Page Content -->
 <div class="container">
     <div class="row">
@@ -89,7 +43,8 @@
                     <form:errors path="password" class="error"></form:errors>"
                     <p class="succesMessage">${successMessage}</p>
                     <br/><br/>
-                    <input type="submit" value="Utwórz konto" id="button" class="btn btn-primary btn-md">
+                    <span style="float-wrap: initial"><input type="submit" value="Utwórz konto" id="button" class="btn btn-success">
+                        <a href="/login" id="button2" class="btn btn-success">Zaloguj</a></span>
                 </form:form>
                 <div class="wrapper">
                 </div>

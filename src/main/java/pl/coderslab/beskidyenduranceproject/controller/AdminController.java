@@ -137,7 +137,6 @@ public class AdminController {
             return "redirect:/admin/mountains";
 
         }
-
     }
 
     @RequestMapping(value = "/addTrail", method = RequestMethod.GET)
@@ -157,12 +156,8 @@ public class AdminController {
         } else {
             trailRepository.save(trail);
             return "redirect:/admin/trails";
-
         }
-
     }
-    
-    
 
     @RequestMapping(value = "/trails", method = RequestMethod.GET)
     public String trailsPage(Model model) {
@@ -172,9 +167,6 @@ public class AdminController {
 
         return "/admin/trails";
     }
-
-    
-
 
     @ModelAttribute("towns")
     public Collection<Town> populatedTowns() {

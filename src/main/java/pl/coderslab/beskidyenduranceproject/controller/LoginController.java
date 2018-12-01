@@ -13,6 +13,7 @@ import pl.coderslab.beskidyenduranceproject.service.EmailSerivice;
 import pl.coderslab.beskidyenduranceproject.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class LoginController {

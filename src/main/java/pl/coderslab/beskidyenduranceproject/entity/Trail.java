@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "trails")
 public class Trail {
 

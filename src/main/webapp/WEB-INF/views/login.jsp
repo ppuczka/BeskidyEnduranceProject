@@ -35,7 +35,8 @@
 					</br>
 				<input type="password" id="password" name="password" class="form-control input-sm chat-input" placeholder="hasło" />
 				</br>
-					<input type="submit" value="Zaloguj" class="btn btn-primary btn-md">
+				<span><input type="submit" value="Zaloguj" class="btn btn-success">
+					<a href="/register" id="button2" class="btn btn-success">Zarejestruj</a></span>
 				</form>
 				<div class="wrapper">
 				</div>
