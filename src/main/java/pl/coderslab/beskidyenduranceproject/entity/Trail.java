@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 @Getter
@@ -26,11 +27,11 @@ public class Trail {
     @Size(max = 100, message = "Nazwa jest za długa")
     private String name;
 
-//    @NotEmpty(message = "Pole nie może być puste")
-    private double length;
+    @NotNull(message = "Pole nie może być puste")
+    private Double length;
 
-//    @NotEmpty(message = "Pole nie może być puste")
-    private int uphill;
+    @NotNull(message = "Pole nie może być puste")
+    private Integer uphill;
 
     @NotEmpty(message = "Pole nie może być puste")
     @Size(max = 50)

@@ -1,10 +1,13 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.exception.DataException;
+//import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.sql.Date;
 
 @Entity
 @Table(name = "messages")
@@ -24,6 +27,9 @@ public class Message {
     private String text;
 
     private boolean status;
+
+    @CreationTimestamp
+    private Date created;
 
     @ManyToOne
     private User sender;

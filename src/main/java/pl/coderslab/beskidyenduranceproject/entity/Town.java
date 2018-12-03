@@ -1,14 +1,14 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.*;
 import javax.persistence.*;
 import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,7 +26,8 @@ public class Town {
     private String name;
 
     @DecimalMin(value = "5", message = "Podana wartość musi być większa od 5")
-    private int height;
+    @NotNull(message = "Pole nie może być puste")
+    private Integer height;
 
     @Column(length = 1000)
     private String decription;

@@ -30,7 +30,7 @@ public class Mountain {
 
     @NotNull(message = "Pole nie może być puste")
     @DecimalMin(value = "5", message = "Podana wartość musi być większa od 5")
-    private int height;
+    private Integer height;
 
     @ManyToMany(mappedBy = "mountains")
     private List<Trail> trailList;

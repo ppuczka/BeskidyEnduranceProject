@@ -8,14 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.coderslab.beskidyenduranceproject.entity.User;
 import pl.coderslab.beskidyenduranceproject.service.EmailSerivice;
 import pl.coderslab.beskidyenduranceproject.service.UserService;
 
 import javax.validation.Valid;
-import java.util.Date;
 
 @Controller
+@SessionAttributes("loggedUser")
 public class LoginController {
 
     @Autowired
@@ -80,6 +81,7 @@ public class LoginController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         model.addAttribute("user", user);
+        model.addAttribute("loggedUser", user);
         return "/homePage";
 
     }

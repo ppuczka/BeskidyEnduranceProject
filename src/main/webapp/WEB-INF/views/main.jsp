@@ -33,14 +33,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home">Strona główna
+                    <a class="nav-link" href="/logged/mainPage">Strona główna
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">O nas</a>
+                    <a class="nav-link" href="/challanges">Wyzwania</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Rejestracja</a>
+                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj</a>
@@ -90,7 +90,7 @@
 
         <div class="container-fluid">
             <br/><br/><br/>
-            <p class="logged" style="text-align: right">Witaj ${user.firstName}</p>
+            <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
             <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Rozwiń menu</a>
         </div>
     </div>

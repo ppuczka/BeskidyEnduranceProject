@@ -57,7 +57,7 @@
 
         <div class="container-fluid">
             <br/><br/><br/>
-            <p class="logged" style="text-align: right">Witaj ${user.firstName}</p>
+            <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
             <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Rozwiń menu</a>
         </div>
     </div>

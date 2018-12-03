@@ -21,7 +21,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private Long userId;
 
     @NotEmpty(message = "Pole nie może być puste")
     @Size(max = 100)
@@ -41,7 +41,7 @@ public class User {
     @NotEmpty(message = "Pole nie może być puste")
     private String password;
 
-    private int active;
+    private Integer active;
 
     @NotEmpty(message = "Pole nie może być puste")
     @Email(message = "Podaj poprawny adres e-mail")

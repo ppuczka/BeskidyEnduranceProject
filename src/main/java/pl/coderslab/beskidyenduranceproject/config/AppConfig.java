@@ -3,6 +3,7 @@ package pl.coderslab.beskidyenduranceproject.config;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import pl.coderslab.beskidyenduranceproject.converter.MountainConverter;
@@ -34,5 +35,13 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public TownConverter getTownConverter() {
         return new TownConverter();
+    }
+
+    @Bean
+    public ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasename("binding-handling/messages");
+        source.setUseCodeAsDefaultMessage(true);
+        return source;
     }
 }
