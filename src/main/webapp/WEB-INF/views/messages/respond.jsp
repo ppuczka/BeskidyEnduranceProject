@@ -54,7 +54,7 @@
                     <a class="nav-link" href="/challanges">Wyzwania</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logged/message/create">Wiadomości</a>
+                    <a class="nav-link" href="/logged/message/received">Wiadomości</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj</a>
@@ -110,35 +110,35 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-auto">
-                            <form:form modelAttribute="message" method="post">
+                            <form method="post">
                                 <div class="flex-container">
                                     <div class="form-group flex-item">
                                         <label class="control-label " for="name">
                                             Odbiorca
                                         </label>
-                                        <form:select path="receiver" items="${users}" itemValue="userId" itemLabel="email" class="select form-control" name="select1"/>
+                                        <input type="email" value="${message.sender.email}" name="email" class="form-control">
                                     </div>
                                     <div class="form-group flex-item">
                                         <label class="control-label requiredField" >
                                             Temat
                                         </label>
-                                        <form:input path="title" cols="70" rows="10" class="form-control" ></form:input>
+                                        <input type="text" cols="70" class="form-control" name="title" value="RE: ${message.title}">
                                     </div>
                                     <div class="form-group flex-item">
                                         <label class="control-label requiredField" >
                                             Treść
                                         </label>
-                                        <form:textarea path="text" cols="70" rows="10" class="form-control" ></form:textarea>
+                                        <input type="text" cols="70" rows="10" class="form-control" name="text" value="${message.text}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div>
                                         <button class="btn btn-success btn-sm my-2 my-sm-0" name="submit" type="submit">
-                                            Wyślij
+                                            Odpowiedz
                                         </button>
                                     </div>
                                 </div>
-                            </form:form>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
         </div>
     </div>
 </div>
-    <!-- /#page-content-wrapper -->
+<!-- /#page-content-wrapper -->
 
 
 

@@ -1,6 +1,9 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.Email;
@@ -14,7 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
@@ -54,7 +59,7 @@ public class User {
     @CreationTimestamp
     private Date created;
 
-    @OneToMany(mappedBy = "receiver")
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
     private List<Message> received = new ArrayList<>();
 
     private long points;

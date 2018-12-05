@@ -1,17 +1,18 @@
 package pl.coderslab.beskidyenduranceproject.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.exception.DataException;
-//import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity
 @Table(name = "messages")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Message {
 
 
@@ -31,11 +32,10 @@ public class Message {
     @CreationTimestamp
     private Date created;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User sender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User receiver;
-
 
 }

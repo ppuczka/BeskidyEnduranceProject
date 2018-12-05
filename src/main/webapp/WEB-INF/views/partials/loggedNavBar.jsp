@@ -7,13 +7,13 @@
     <meta name="author" content="">
 
     <title>Beskidy Endurance</title>
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
-
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                     <a class="nav-link" href="/challanges">Wyzwania</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logged/message/create">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
+                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj</a>

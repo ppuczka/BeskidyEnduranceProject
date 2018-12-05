@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.beskidyenduranceproject.entity.Message;
 import pl.coderslab.beskidyenduranceproject.entity.User;
 import pl.coderslab.beskidyenduranceproject.repository.MessageRepository;
@@ -62,7 +59,32 @@ public class MessageController {
         User sessionUser = (User) session.getAttribute("loggedUser");
         User receiver = userRepository.getOne(sessionUser.getUserId());
         model.addAttribute("received", receiver.getReceived());
+
         return "/messages/received";
+
+    }
+
+    @RequestMapping(value="/respond/{id}", method = RequestMethod.GET)
+    public String respond(Model model, @PathVariable Long id) {
+        Message message = messageRepository.getOne(id);
+        model.addAttribute("message", message);
+        return "/messages/respond";
+    }
+
+    @RequestMapping(value = "respond/**", method = RequestMethod.POST)
+    public String sendResponse(@RequestParam String title, @RequestParam String text, @RequestParam String email, HttpSession session) {
+
+        Message message = new Message();
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        User userReceiver = userRepository.findByEmail(email);
+
+        message.setSender(loggedUser);
+        message.setReceiver(userReceiver);
+        message.setText(text);
+        message.setTitle(title);
+        messageRepository.save(message);
+        return "redirect:/messages/received";
+
 
     }
 

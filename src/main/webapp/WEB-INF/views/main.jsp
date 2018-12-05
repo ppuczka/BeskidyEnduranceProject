@@ -20,9 +20,24 @@
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
+<style>
+    .btn {
+        background-color: #28a745;
+        border: none;
+        color: white;
+        padding: 12px 16px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Darker background on mouse-over */
+    .btn:hover {
+        background-color: green;
+    }
+</style>
+
 
 <body>
-
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -86,16 +101,15 @@
     </div>
     <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
 
-        <div class="container-fluid">
-            <br/><br/><br/>
-            <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-            <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Rozwiń menu</a>
-        </div>
+    <!-- Page Content -->
+    <div class="container-fluid">
+        <br/><br/><br/>
+        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
+        <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
+    </div>
     </div>
     <!-- /#page-content-wrapper -->
-
 </div>
 
 <script src="<c:url value="/resources/static/js/jquery.min.js"/>"></script>
@@ -106,8 +120,6 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-
-
 </script>
 </body>
 </html>

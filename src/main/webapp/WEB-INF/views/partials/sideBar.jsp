@@ -53,16 +53,7 @@
         </div>
         <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-
-        <div class="container-fluid">
-            <br/><br/><br/>
-            <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-            <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Rozwiń menu</a>
-        </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-
+</div>
 </div>
 
 <script src="<c:url value="/resources/static/js/jquery.min.js"/>"></script>
@@ -73,8 +64,6 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-
-
 </script>
 
 </body>

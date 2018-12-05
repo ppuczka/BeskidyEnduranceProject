@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.coderslab.beskidyenduranceproject.converter.MessageConverter;
 import pl.coderslab.beskidyenduranceproject.converter.MountainConverter;
 import pl.coderslab.beskidyenduranceproject.converter.TownConverter;
 
@@ -19,6 +20,7 @@ public class AppConfig implements WebMvcConfigurer {
 //        registry.addConverter(getStringToIntegerConverter());
         registry.addConverter(getMountainConverter());
         registry.addConverter(getTownConverter());
+        registry.addConverter(getMessageConverter());
     }
 
 //    @Bean
@@ -31,10 +33,14 @@ public class AppConfig implements WebMvcConfigurer {
         return new MountainConverter();
 
     }
-
     @Bean
     public TownConverter getTownConverter() {
         return new TownConverter();
+    }
+
+    @Bean
+    public MessageConverter getMessageConverter() {
+        return new MessageConverter();
     }
 
     @Bean
