@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Main Page</title>
+    <title>View Message</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
@@ -22,6 +22,7 @@
 
 </head>
 <style>
+
     .btn {
         background-color: #28a745;
         border: none;
@@ -30,15 +31,22 @@
         font-size: 12px;
         cursor: pointer;
     }
-
-    .confirm {
-        color: red;
-    }
-
+    
     /* Darker background on mouse-over */
     .btn:hover {
         background-color: green;
     }
+    .text-area {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    #menu-toggle {
+        padding-bottom: 10px;
+    }
+    
+
+    
 </style>
 
 
@@ -111,36 +119,18 @@
     <div class="container-fluid">
         <br/><br/><br/>
         <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-        <span><a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
-               <a href="/logged/message/create" class="btn btn-success btn-xs">Utwórz wiadomość</a> </span>
-        <br/><br/>
-        <h3>Otrzymane wiadomości</h3><br/>
-        <p class="confirm">${confirm}</p>
-    </div>
-            <table class="table table-hover">
-            <thead>
-            <tr>
-            <th>Nadawca </th>
-            <th>Temat</th>
-            <th>Data utwożenia</th>
-            <th>Opcje</th>
-            </tr>
-            </thead>
+        <span><a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a></span>
 
-            <tbody>
-            <c:forEach items="${received}" var="msg">
-            <tr>
-            <td>${msg.sender.email}</td>
-            <td>${msg.title}</td>
-            <td>${msg.created}</td>
-            <td><a href="/logged/message/view/${msg.messageId}" class="btn"><i class="fas fa-eye"></i></a>
-                <a href="/logged/message/respond/${msg.messageId}" class="btn"><i class="fas fa-share-square"></i></a>
-                <a href="/logged/message/delete/${msg.messageId}" class="btn"><i class="fa fa-trash"></i></a></td>
-            </tr>
-            </c:forEach>
-            </tbody>
-            </table>
+        <br/>
+        <h4>${message.title}</h4>
+
     </div>
+    <textarea class="text-area" cols="80" rows="20">${message.text}</textarea>
+    </div>
+    <span> <a href="/logged/message/respond/${message.messageId}" class="btn btn-success btn-xs">Odpowiedz</a>
+                <a href="/logged/message/delete/${message.messageId}" class="btn btn-success btn-xs">Usuń</a>
+                <a href="/logged/message/received" class="btn btn-success btn-xs">Powrót</a></span>
+
     <!-- /#page-content-wrapper -->
 </div>
 
@@ -155,4 +145,3 @@
 </script>
 </body>
 </html>
-

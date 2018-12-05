@@ -59,9 +59,8 @@ public class LoginController {
             return "forms/register";
         } else {
             userService.saveUser(user);
-            emailSerivice.sendEmail(user);
+            emailSerivice.sendRegistrationEmail(user);
             model.addAttribute("successMessage", "Użytkownik został zarejetrowany, otrzymasz email z potwierdzeniem");
-            //czy dodawać obiekt do modelu i wracać go do widoku
             return "/forms/register";
         }
 

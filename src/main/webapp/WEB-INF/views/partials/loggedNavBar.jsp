@@ -38,7 +38,7 @@
                     <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj</a>
+                    <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj <i class="fas fa-sign-in-alt"></i></a>
                 </li>
             </ul>
         </div>

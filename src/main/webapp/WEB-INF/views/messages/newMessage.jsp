@@ -12,6 +12,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="https://use.fontawesome.com/releases/v5.5.0/css/all.css"/>"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
@@ -29,6 +32,10 @@
         cursor: pointer;
     }
 
+    .confirm {
+        color: red;
+    }
+
     /* Darker background on mouse-over */
     .btn:hover {
         background-color: green;
@@ -36,7 +43,6 @@
 </style>
 
 <body>
-
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -54,10 +60,10 @@
                     <a class="nav-link" href="/challanges">Wyzwania</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logged/message/create">Wiadomości</a>
+                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj</a>
+                    <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj <i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>

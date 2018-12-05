@@ -18,7 +18,7 @@ public class EmailSerivice {
         this.sender = sender;
     }
 
-    public void sendEmail(User user) throws Exception {
+    public void sendRegistrationEmail(User user) throws Exception {
 
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -26,6 +26,16 @@ public class EmailSerivice {
         helper.setText("Witaj właśnie zarejestrowałeś się w Beskidy Endurance");
         helper.setSubject("Beksidy Endurance potwierdzenie rejestracji");
 
+        sender.send(message);
+    }
+
+    public void sendMessageEmail(User msgReceiver, String senderName) throws Exception {
+
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        helper.setTo(msgReceiver.getEmail());
+        helper.setText("Witaj! W Twojej skrzynce czeka nowa wiadomość od " + senderName);
+        helper.setSubject("Nowa wiadomość");
         sender.send(message);
     }
 }

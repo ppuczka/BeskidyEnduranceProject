@@ -1,5 +1,6 @@
 package pl.coderslab.beskidyenduranceproject.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import pl.coderslab.beskidyenduranceproject.entity.Message;
 import pl.coderslab.beskidyenduranceproject.entity.User;
 import pl.coderslab.beskidyenduranceproject.repository.MessageRepository;
 import pl.coderslab.beskidyenduranceproject.repository.UserRepository;
+import pl.coderslab.beskidyenduranceproject.service.EmailSerivice;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -27,6 +29,9 @@ public class MessageController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EmailSerivice emailSerivice;
+
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createMessage(Model model) {
@@ -37,7 +42,8 @@ public class MessageController {
     }
 
     @RequestMapping(value ="/create", method = RequestMethod.POST)
-    public String sendMessage(@Valid Message message, BindingResult result, Model model, HttpSession session) {
+    public String sendMessage(@Valid Message message, BindingResult result, Model model,
+                              HttpSession session) throws Exception {
 
         User loggedUser = (User) session.getAttribute("loggedUser");
 
@@ -47,8 +53,10 @@ public class MessageController {
             message.setStatus(true);
             message.setSender(loggedUser);
             messageRepository.save(message);
-            model.addAttribute("confirm", "Wiadomość pomyślnie wyslana");
-            return "redirect:/messages/received";
+            emailSerivice.sendMessageEmail(message.getReceiver(), loggedUser.getFirstName());
+            model.addAttribute("confirm", "Wiadomość pomyślnie wysłana");
+            model.addAttribute("received", loggedUser.getReceived());
+            return "/messages/received";
        }
 
     }
@@ -56,11 +64,19 @@ public class MessageController {
     @RequestMapping(value ="/received", method = RequestMethod.GET)
     @Transactional
     public String received(Model model, HttpSession session)  {
-        User sessionUser = (User) session.getAttribute("loggedUser");
-        User receiver = userRepository.getOne(sessionUser.getUserId());
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        User receiver = userRepository.getOne(loggedUser.getUserId());
         model.addAttribute("received", receiver.getReceived());
 
         return "/messages/received";
+
+    }
+
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(@PathVariable Long id, Model model) {
+        Message viewdMessage = messageRepository.getOne(id);
+        model.addAttribute("message", viewdMessage);
+        return "/messages/view";
 
     }
 
@@ -71,8 +87,9 @@ public class MessageController {
         return "/messages/respond";
     }
 
-    @RequestMapping(value = "respond/**", method = RequestMethod.POST)
-    public String sendResponse(@RequestParam String title, @RequestParam String text, @RequestParam String email, HttpSession session) {
+    @RequestMapping(value = "/respond/**", method = RequestMethod.POST)
+    public String sendResponse(@RequestParam String title, @RequestParam String text, @RequestParam String email,
+                               HttpSession session, Model model) throws Exception {
 
         Message message = new Message();
         User loggedUser = (User) session.getAttribute("loggedUser");
@@ -83,11 +100,33 @@ public class MessageController {
         message.setText(text);
         message.setTitle(title);
         messageRepository.save(message);
-        return "redirect:/messages/received";
 
+        User receiver = userRepository.getOne(loggedUser.getUserId());
+        model.addAttribute("received", receiver.getReceived());
+
+        String confirm = "Wiadomość do użtykownika " + userReceiver.getFirstName() + " została wysłana";
+        model.addAttribute("confirm", confirm);
+
+        messageRepository.save(message);
+        emailSerivice.sendMessageEmail(message.getReceiver(), loggedUser.getFirstName());
+
+        return "/messages/received";
 
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable Long id, Model model, HttpSession session) {
+        messageRepository.deleteById(id);
+        String confirm = "Wiadomość została usunięta";
+        model.addAttribute("confirm", confirm);
+
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        User receiver = userRepository.getOne(loggedUser.getUserId());
+        model.addAttribute("received", receiver.getReceived());
+
+        return "/messages/received";
+
+    }
 
     @ModelAttribute("users")
     public Collection<User> populatedUsers() {

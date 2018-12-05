@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Beskidy Endurance received</title>
+    <title>Beskidy Endurance</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
@@ -20,6 +20,18 @@
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
 
 </head>
+<style>
+
+.btn {
+background-color: #28a745;
+border: none;
+color: white;
+padding: 12px 16px;
+font-size: 12px;
+cursor: pointer;
+}
+
+</style>
 
 <body>
 
@@ -33,8 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home">Strona główna
-                    </a>
+                    <a class="nav-link" href="/home">Strona główna</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">O nas</a>
@@ -43,7 +54,7 @@
                     <a class="nav-link" href="/register">Rejestracja</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login" style="color:lawngreen">Logowanie</a>
+                    <a class="nav-link" href="/login" style="color:lawngreen">Logowanie <i class="fas fa-sign-in-alt"></i></a>
                 </li>
             </ul>
         </div>

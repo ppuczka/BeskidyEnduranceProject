@@ -23,16 +23,6 @@ body {
   alignment-baseline: center;
 }
 
-/*.flex-container {*/
-  /*display: flex;*/
-  /*flex-wrap: nowrap;*/
-  /*align-items: stretch;*/
-/*}*/
-
-/*.flex-item {*/
-  /*display: inline-block;*/
-/*}*/
-
 .bootstrap-iso {
   display: inline-block;
   margin: 0 auto;
@@ -41,18 +31,5 @@ body {
   align-self: center;
   margin: 0 auto;
 }
-/* Style buttons */
-.btn {
-  background-color: DodgerBlue; /* Blue background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-}
 
-/* Darker background on mouse-over */
-.btn:hover {
-  background-color: RoyalBlue;
-}
 
