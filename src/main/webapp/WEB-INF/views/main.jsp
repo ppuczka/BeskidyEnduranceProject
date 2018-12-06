@@ -110,6 +110,72 @@
         <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
         <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
     </div>
+    <table class="table table-hover">
+        <h4><p align="centre">Top 5 trasy</p></h4>
+        <thead>
+        <tr>
+            <th>Ranking</th>
+            <th>Nazwa</th>
+            <th>Długość</th>
+            <th>Suma przewyższeń</th>
+            <th>Typ</th>
+            <th>Opis</th>
+            <th>Stopień trudności</th>
+            <th>Góry</th>
+            <th>Miasta</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${trails}" var="trail">
+            <tr>
+                <td>${trail.rating}</td>
+                <td>${trail.name}</td>
+                <td>${trail.length}</td>
+                <td>${trail.uphill}</td>
+                <td>${trail.type}</td>
+                <td>${trail.length}</td>
+                <td>${trail.difficluty}</td>
+                <td><a href="/admin/showMountains/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl gory</a></td>
+                <td><a href="/admin/showTowns/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl miasta</a></td>
+                <td><a href="/admin/deleteTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Usuń </a>
+                    <a href="/admin/editTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Edytuj</a></td>
+            </tr>
+            <%--ewentutlanie--%>
+            <%--<td><c:forEach items="${town.trailList}" var="trail">--%>
+            <%--${town.trail}--%>
+        </c:forEach>
+        </tbody>
+
+    </table>
+
+    <h4><p align="centre">Top 5 użytkownicy</p></h4>
+    <table class="table table-hover">
+
+        <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Adres email</th>
+            <th>Punkty</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td>${user.firstName}</td>
+                <td>${user.email}</td>
+                <td>${user.points}</td>
+                <td><a href="/admin/showTrails/${user.userId}" role = "button" class="btn btn-primary btn-sm">Wyświetl listę tras</a></td>
+                <td><a href="/admin/deleteUser/${user.userId}" role = "button" class="btn btn-primary btn-sm">Usuń </a>
+                    <a href="/admin/editUser/${user.userId}" role = "button" class="btn btn-primary btn-sm">Edytuj</a></td>
+            </tr>
+            <%--ewentutlanie--%>
+            <%--<td><c:forEach items="${town.trailList}" var="trail">--%>
+            <%--${town.trail}--%>
+        </c:forEach>
+        </tbody>
+
+    </table>
     </div>
     <!-- /#page-content-wrapper -->
 </div>

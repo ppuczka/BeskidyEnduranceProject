@@ -15,7 +15,7 @@
 
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Ranking</th>
             <th>Nazwa</th>
             <th>Długość</th>
             <th>Suma przewyższeń</th>
@@ -29,7 +29,7 @@
         <tbody>
         <c:forEach items="${trails}" var="trail">
             <tr>
-                <td>${trail.trailId}</td>
+                <td>${trail.rating}</td>
                 <td>${trail.name}</td>
                 <td>${trail.length}</td>
                 <td>${trail.uphill}</td>

@@ -62,7 +62,9 @@ public class User {
     @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
     private List<Message> received = new ArrayList<>();
 
-    private long points;
+    private Integer points;
+
+
 
 
 }

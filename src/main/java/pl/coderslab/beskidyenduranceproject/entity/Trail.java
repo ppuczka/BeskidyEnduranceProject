@@ -51,5 +51,7 @@ public class Trail {
 //    @NotEmpty(message = "Pole nie może być puste")
     private List<Town> towns;
 
+    private Integer rating;
+
 
 }
