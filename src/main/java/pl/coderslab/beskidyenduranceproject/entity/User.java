@@ -64,7 +64,12 @@ public class User {
 
     private Integer points;
 
+    private Integer stravaClientId;
 
+    private String stravaClientSecret;
 
+    private String stravaCode;
+
+    private Integer stravaAthleteId;
 
 }

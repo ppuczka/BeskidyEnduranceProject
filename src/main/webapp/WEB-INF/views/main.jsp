@@ -36,6 +36,17 @@
     .btn:hover {
         background-color: green;
     }
+    .fa-strava {
+        color: red;
+        size: 22px;
+        font-size: 16px;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    #strava {
+        font-size: 16px;
+    }
 </style>
 
 
@@ -90,7 +101,7 @@
                 <a href="#">Services</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="/logged/getAuthData" id="strava">Strava <i class="fab fa-strava"></i></a>
             </li>
             <li style="background: black;">
                 <label for="exampleInputEmail1"></label>

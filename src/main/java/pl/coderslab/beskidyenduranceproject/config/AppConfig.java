@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import pl.coderslab.beskidyenduranceproject.converter.MessageConverter;
 import pl.coderslab.beskidyenduranceproject.converter.MountainConverter;
 import pl.coderslab.beskidyenduranceproject.converter.TownConverter;
+import pl.coderslab.beskidyenduranceproject.service.StravaApiService;
 
 
 @Configuration
@@ -27,6 +28,11 @@ public class AppConfig implements WebMvcConfigurer {
 //    public StringToIntegerConverter getStringToIntegerConverter() {
 //        return new StringToIntegerConverter();
 //    }
+
+    @Bean
+    public StravaApiService getStravaApiService() {
+        return new StravaApiService();
+    }
 
     @Bean
     public MountainConverter getMountainConverter() {
