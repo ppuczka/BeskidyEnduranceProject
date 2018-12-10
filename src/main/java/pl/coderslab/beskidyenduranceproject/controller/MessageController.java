@@ -33,9 +33,20 @@ public class MessageController {
     private EmailSerivice emailSerivice;
 
 
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createMessage(Model model) {
         Message message = new Message();
+        model.addAttribute("message", message);
+        return "/messages/newMessage";
+
+    }
+
+    @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
+    public String createMessage(Model model, @PathVariable Long id) {
+        Message message = new Message();
+        User userReciver = userRepository.getOne(id);
+        message.setReceiver(userReciver);
         model.addAttribute("message", message);
         return "/messages/newMessage";
 

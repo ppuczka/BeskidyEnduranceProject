@@ -23,16 +23,16 @@
 
 </head>
 <style>
+    /* Darker background on mouse-over */
+
     .btn {
         background-color: #28a745;
         border: none;
         color: white;
         padding: 12px 16px;
-        font-size: 16px;
+        font-size: 12px;
         cursor: pointer;
     }
-
-    /* Darker background on mouse-over */
     .btn:hover {
         background-color: green;
     }
@@ -46,6 +46,20 @@
 
     #strava {
         font-size: 16px;
+    }
+    .messages {
+        color: red;
+    }
+    .tableTitle {
+        text-align: right;
+        padding: 16px;
+        font-size: 22px;
+        font: bold;
+        color: #1b1e21;
+    }
+
+    .fa-envelope {
+        color: #28a745;
     }
 </style>
 
@@ -101,7 +115,7 @@
                 <a href="#">Services</a>
             </li>
             <li>
-                <a href="/logged/getAuthData" id="strava">Strava <i class="fab fa-strava"></i></a>
+                <a href="/logged/authorizeStrava" id="strava">Strava <i class="fab fa-strava"></i></a>
             </li>
             <li style="background: black;">
                 <label for="exampleInputEmail1"></label>
@@ -118,11 +132,12 @@
     <!-- Page Content -->
     <div class="container-fluid">
         <br/><br/><br/>
-        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
+        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}, liczba punktów ${loggedUser.points}</p>
         <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
     </div>
+    <div class="messages">${stravaConnectMsg}</div>
     <table class="table table-hover">
-        <h4><p align="centre">Top 5 trasy</p></h4>
+        <div class="tableTitle">Top 5 trasy</div>
         <thead>
         <tr>
             <th>Ranking</th>
@@ -159,7 +174,7 @@
 
     </table>
 
-    <h4><p align="centre">Top 5 użytkownicy</p></h4>
+    <div class="tableTitle">Top 5 użytkownicy</div>
     <table class="table table-hover">
 
         <thead>
@@ -176,9 +191,8 @@
                 <td>${user.firstName}</td>
                 <td>${user.email}</td>
                 <td>${user.points}</td>
-                <td><a href="/admin/showTrails/${user.userId}" role = "button" class="btn btn-primary btn-sm">Wyświetl listę tras</a></td>
-                <td><a href="/admin/deleteUser/${user.userId}" role = "button" class="btn btn-primary btn-sm">Usuń </a>
-                    <a href="/admin/editUser/${user.userId}" role = "button" class="btn btn-primary btn-sm">Edytuj</a></td>
+                <td><a href="/logged/message/create/${user.userId}"><i class="fas fa-envelope"></i></a>
+
             </tr>
             <%--ewentutlanie--%>
             <%--<td><c:forEach items="${town.trailList}" var="trail">--%>

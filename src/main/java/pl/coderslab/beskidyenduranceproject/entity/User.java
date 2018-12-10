@@ -62,7 +62,7 @@ public class User {
     @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
     private List<Message> received = new ArrayList<>();
 
-    private Integer points;
+    private Float points;
 
     private Integer stravaClientId;
 
