@@ -49,7 +49,11 @@ public class StravaController {
 
     @RequestMapping(path = "/authorizeStrava", method = RequestMethod.GET)
     public String authorizeStrava(Model model, HttpSession session) {
-        User loggedUser = (User) session.getAttribute("logggedUser");
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        if (loggedUser.isStrava() == true) {
+            model.addAttribute("successMsg", "Już połączyłeś konto Strava");
+            return "/main";
+        }
         User user = new User();
         model.addAttribute("user", user);
         return "/forms/authorizeStrava";
@@ -73,6 +77,7 @@ public class StravaController {
     public String getAuthorizationData(@RequestParam String code, HttpSession session, Model model) {
         User loggedUser = (User) session.getAttribute("loggedUser");
         loggedUser.setStravaCode(code);
+        loggedUser.setStrava(true);
         StravaAthlete athlete = stravaApiService.getStravaAthlete(loggedUser);
 
         StravaStatistics stravaStatistics = stravaApiService.getAthleteStatistic(loggedUser);

@@ -27,7 +27,7 @@
         background-color: #28a745;
         border: none;
         color: white;
-        padding: 12px 16px;
+        padding: 6px 12px;
         font-size: 16px;
         cursor: pointer;
     }
@@ -112,6 +112,7 @@
             <br/><br/><br/>
             <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
             <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
+            <div class ="confirm">${message}</div>
             <div class="bootstrap-iso">
                 <div class="container-fluid">
                     <div class="row">

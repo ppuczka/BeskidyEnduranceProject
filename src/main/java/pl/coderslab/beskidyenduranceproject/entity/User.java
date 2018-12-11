@@ -53,16 +53,18 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Trail> trails;
 
     @CreationTimestamp
     private Date created;
 
-    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "receiver")
     private List<Message> received = new ArrayList<>();
 
     private Float points;
+
+    private boolean strava;
 
     private Integer stravaClientId;
 
@@ -71,5 +73,7 @@ public class User {
     private String stravaCode;
 
     private Integer stravaAthleteId;
+
+
 
 }

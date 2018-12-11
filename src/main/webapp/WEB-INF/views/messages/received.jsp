@@ -26,7 +26,7 @@
         background-color: #28a745;
         border: none;
         color: white;
-        padding: 12px 16px;
+        padding: 6px 12px;
         font-size: 12px;
         cursor: pointer;
     }

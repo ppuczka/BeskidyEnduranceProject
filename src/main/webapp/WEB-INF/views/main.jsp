@@ -29,7 +29,7 @@
         background-color: #28a745;
         border: none;
         color: white;
-        padding: 12px 16px;
+        padding: 6px 12px;
         font-size: 12px;
         cursor: pointer;
     }
@@ -100,7 +100,7 @@
             <br/>
             </li>
             <li>
-                <a href="#">Shortcuts</a>
+                <a href="/logged/trails/view">Trasy</a>
             </li>
             <li>
                 <a href="#">Overview</a>
@@ -136,19 +136,18 @@
         <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
     </div>
     <div class="messages">${stravaConnectMsg}</div>
+        <div class="messages">${successMsg}</div>
     <table class="table table-hover">
         <div class="tableTitle">Top 5 trasy</div>
         <thead>
         <tr>
             <th>Ranking</th>
             <th>Nazwa</th>
-            <th>Długość</th>
-            <th>Suma przewyższeń</th>
+            <th>Długość (km)</th>
+            <th>Suma przewyższeń (m)</th>
             <th>Typ</th>
-            <th>Opis</th>
             <th>Stopień trudności</th>
-            <th>Góry</th>
-            <th>Miasta</th>
+            <th>Opcje</th>
         </tr>
         </thead>
         <tbody>
@@ -156,19 +155,14 @@
             <tr>
                 <td>${trail.rating}</td>
                 <td>${trail.name}</td>
-                <td>${trail.length}</td>
-                <td>${trail.uphill}</td>
+                <td>${trail.length} km</td>
+                <td>${trail.uphill} m</td>
                 <td>${trail.type}</td>
-                <td>${trail.length}</td>
                 <td>${trail.difficluty}</td>
-                <td><a href="/admin/showMountains/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl gory</a></td>
-                <td><a href="/admin/showTowns/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Wyświetl miasta</a></td>
-                <td><a href="/admin/deleteTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Usuń </a>
-                    <a href="/admin/editTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm">Edytuj</a></td>
+                <td><a href="/logged/trails/deleteTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i></a>
+                    <a href="/logged/trails/likeTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i></a>
+                    <a href="/logged/trails/trailDetails/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-info-circle"></i></a></td>
             </tr>
-            <%--ewentutlanie--%>
-            <%--<td><c:forEach items="${town.trailList}" var="trail">--%>
-            <%--${town.trail}--%>
         </c:forEach>
         </tbody>
 

@@ -18,7 +18,6 @@ public class StravaApiService {
         Token token  = new Token(resposne);
         API api = new API(token);
         StravaAthlete athlete = api.getAthlete(10147971);
-
         return athlete;
 
 }
@@ -28,7 +27,6 @@ public class StravaApiService {
         Token token  = new Token(resposne);
         API api = new API(token);
         StravaStatistics statistics = api.statistics(10147971);
-
         return statistics;
     }
 

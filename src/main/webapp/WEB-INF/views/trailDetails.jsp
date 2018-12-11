@@ -9,44 +9,51 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View Message</title>
+    <title>Main Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="https://use.fontawesome.com/releases/v5.5.0/css/all.css"/>"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
+
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
 <style>
+    /* Darker background on mouse-over */
 
     .btn {
         background-color: #28a745;
         border: none;
         color: white;
         padding: 6px 12px;
+        margin-bottom: 20px;
         font-size: 12px;
         cursor: pointer;
     }
-    
-    /* Darker background on mouse-over */
     .btn:hover {
         background-color: green;
     }
-    .text-area {
-        padding: 10px;
-        margin-bottom: 15px;
+    .fa-strava {
+        color: red;
+        size: 22px;
+        font-size: 16px;
+        padding-left: 0;
+        margin-left: 0;
     }
 
-    #menu-toggle {
-        padding-bottom: 10px;
+    #strava {
+        font-size: 16px;
     }
-    
-
-    
+    .messages {
+        color: red;
+    }
+    .title {
+        font-size: 24px;
+    }
 </style>
 
 
@@ -86,7 +93,7 @@
             <br/>
             </li>
             <li>
-                <a href="#">Shortcuts</a>
+                <a href="/logged/trails/view">Trasy</a>
             </li>
             <li>
                 <a href="#">Overview</a>
@@ -101,7 +108,7 @@
                 <a href="#">Services</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="/logged/authorizeStrava" id="strava">Strava <i class="fab fa-strava"></i></a>
             </li>
             <li style="background: black;">
                 <label for="exampleInputEmail1"></label>
@@ -118,19 +125,23 @@
     <!-- Page Content -->
     <div class="container-fluid">
         <br/><br/><br/>
-        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-        <span><a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a></span>
-
-        <br/>
-        <h4>${message.title}</h4>
-
+        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}, liczba punktów ${loggedUser.points}</p>
+        <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
+        <div class="messages">${stravaConnectMsg}</div>
     </div>
-    <textarea class="text-area" cols="80" rows="20">${message.text}</textarea>
+    <div>
+        <div class="title"><b>Nazwa trasy:</b> ${trail.name}</div><br>
+        <div class="description"><b>Długość:</b> ${trail.length} km</div>
+        <div class="description"><b>Suma przewyższeń:</b> ${trail.uphill} m</div>
+        <div class="description"><b>Opis:</b> ${trail.description}</div>
+        <span class="description"><b>Miasta:</b> <c:forEach items="${towns}" var="town">
+                ${town.name} ${town.height} m n.p.m.,
+            </c:forEach></span><br/>
+        <span class="description"><b>Góry:</b> <c:forEach items="${mountains}" var="mount">
+                ${mount.name} ${mount.height} m n.p.m.,  </span>
+            </c:forEach>
     </div>
-    <span> <a href="/logged/message/respond/${message.messageId}" class="btn btn-success btn-xs">Odpowiedz</a>
-                <a href="/logged/message/delete/${message.messageId}" class="btn btn-success btn-xs">Usuń</a>
-                <a href="/logged/message/received" class="btn btn-success btn-xs">Powrót</a></span>
-
+    </div>
     <!-- /#page-content-wrapper -->
 </div>
 
