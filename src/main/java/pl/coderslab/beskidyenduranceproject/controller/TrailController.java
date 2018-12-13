@@ -1,8 +1,10 @@
 package pl.coderslab.beskidyenduranceproject.controller;
 
 
+import javastrava.api.async.StravaAPIFuture;
 import javastrava.model.StravaActivity;
 import javastrava.model.StravaStatistics;
+import javastrava.model.StravaStatisticsEntry;
 import javastrava.service.Strava;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import pl.coderslab.beskidyenduranceproject.repository.MountainRepository;
 import pl.coderslab.beskidyenduranceproject.repository.TownRepository;
 import pl.coderslab.beskidyenduranceproject.repository.TrailRepository;
 import pl.coderslab.beskidyenduranceproject.repository.UserRepository;
+import pl.coderslab.beskidyenduranceproject.service.StravaApiService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -25,7 +28,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Controller
-@SessionAttributes("loggedUser")
+@SessionAttributes({"loggedUser", "trail"})
 @RequestMapping("/logged/trails")
 public class TrailController {
 
@@ -33,6 +36,9 @@ public class TrailController {
     MountainRepository mountainRepository;
     TownRepository townRepository;
     UserRepository userRepository;
+
+    @Autowired
+    StravaApiService stravaApiService;
 
     @Autowired
     public TrailController(MountainRepository mountainRepository, UserRepository userRepository,
@@ -73,7 +79,45 @@ public class TrailController {
             model.addAttribute("successMsg", "Najpierw połącz z kontem Strava");
             return "/main";
         } else {
+            return "forms/addStravaTrail";
 
+        }
+    }
+
+    @RequestMapping(value ="/getActivityId", method = RequestMethod.GET)
+    public String getStravaActivityId(Model model, HttpSession session, @RequestParam Long activityId) {
+
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        StravaActivity activity = stravaApiService.getActivity(loggedUser, activityId);
+        Trail trailFromStravaActivity = new Trail();
+        trailFromStravaActivity.setName(loggedUser.getFirstName() + " " + activity.getName() + " z dnia " + activity.getStartDateLocal());
+        trailFromStravaActivity.setLength(activity.getDistance()/1000);
+        trailFromStravaActivity.setUphill(activity.getTotalElevationGain());
+        trailFromStravaActivity.setDescription(activity.getDescription());
+        model.addAttribute("trail", trailFromStravaActivity);
+        model.addAttribute("activityId", activityId);
+
+        return "redirect:addTrailFromStrava";
+    }
+
+
+    @RequestMapping(value ="/addTrailFromStrava", method = RequestMethod.GET)
+    public String getStravaActivity(Model model, HttpSession session) {
+        model.addAttribute("trail", session.getAttribute("trail"));
+        return "/forms/addTrail";
+
+    }
+
+    @RequestMapping(value = "/addTrailFromStrava", method = RequestMethod.POST)
+    public String addTrailFromStrava(@Valid Trail trail, BindingResult result, Model model) {
+
+        if(result.hasErrors()) {
+            return "forms/addTrail";
+
+        } else {
+            trailRepository.save(trail);
+            model.addAttribute("successMsg", "Trasa została zapisana");
+            return "trails";
         }
     }
 
@@ -86,26 +130,14 @@ public class TrailController {
         return "trails";
     }
 
-    @RequestMapping(value = "/editTrail/{id}", method = RequestMethod.GET)
-    public String editTrailForm(Model model, @PathVariable Long id) {
-        Trail trail = trailRepository.getOne(id);
-        model.addAttribute("trail", trail);
-        return "forms/addTrail";
+    @RequestMapping(value = "/favTrails", method = RequestMethod.GET)
+    public String trailsPage(Model model, HttpSession session) {
+
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        model.addAttribute("favTrails", loggedUser.getTrails());
+
+        return "favTrails";
     }
-
-    @RequestMapping(value = "/editTrail/**", method = RequestMethod.POST)
-    public String editTrail(@Valid Trail trail, BindingResult bindingResult, Model model) {
-
-            if(bindingResult.hasErrors()) {
-                return "forms/addTrail";
-
-            } else {
-                trailRepository.save(trail);
-                model.addAttribute("successMsg", "Edycja zakończona pomyślnie");
-                return "trails";
-
-                }
-            }
 
 
     @RequestMapping(value = "/deleteTrail/{id}", method = RequestMethod.GET)
@@ -138,6 +170,29 @@ public class TrailController {
                 model.addAttribute("successMsg", "Pomyślnie dodano do ulubionych tras");
                 return "trails";
             }
+
+
+    @RequestMapping(value = "/disLikeTrail/{id}", method = RequestMethod.GET)
+    public String disLikeTrail(@PathVariable Long id, HttpSession session, Model model) {
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        Trail unlikedTrail = trailRepository.getOne(id);
+        List<Trail> userLikedTrails = loggedUser.getTrails();
+        for (Trail t : userLikedTrails) {
+            if (t.getTrailId() == unlikedTrail.getTrailId()) {
+                System.out.println(t.getTrailId());
+                userLikedTrails.remove(t);
+                loggedUser.setTrails(userLikedTrails);
+                userRepository.save(loggedUser);
+                model.addAttribute("successMsg", "Pomyślnie usunięto z ulubionych tras");
+                model.addAttribute("favTrails", userLikedTrails);
+                return "favTrails";
+            }
+
+
+        }
+        return "favTrails";
+    }
+
 
     @RequestMapping(value ="/trailDetails/{id}", method = RequestMethod.GET)
     public String trailDetails(@PathVariable Long id, Model model) {

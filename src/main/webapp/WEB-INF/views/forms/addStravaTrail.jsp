@@ -32,6 +32,10 @@
         cursor: pointer;
     }
 
+    .confirm {
+        color: red;
+    }
+
     /* Darker background on mouse-over */
     .btn:hover {
         background-color: green;
@@ -39,7 +43,6 @@
 </style>
 
 <body>
-
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -57,7 +60,7 @@
                     <a class="nav-link" href="/challanges">Wyzwania</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</a>
+                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj <i class="fas fa-sign-out-alt"></i></a>
@@ -75,19 +78,22 @@
                     <br/>
                 </li>
                 <li>
-                    <a href="/logged/trails/view">Trasy<i class="fas fa-map-marked-alt"></i></a>
+                    <a href="#">Shortcuts</a>
                 </li>
                 <li>
-                    <a href="/logged/trails/favTrails">Ulubione Trasy<i class="fas fa-map-marked-alt"></i></a>
+                    <a href="#">Overview</a>
                 </li>
                 <li>
-                    <a href="/logged/ranks/">Rangi<i class="fas fa-certificate"></i></a>
+                    <a href="#">Events</a>
                 </li>
                 <li>
-                    <a href="/logged/townsCities/viewAll/">Miasta i Szczyty<i class="fas fa-city"></i><i class="fas fa-mountain"></i></a>
+                    <a href="#">About</a>
                 </li>
                 <li>
-                    <a href="/logged/authorizeStrava" id="strava">Połącz z Strava<i class="fab fa-strava"></i></a>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
                 </li>
                 <li style="background: black;">
                     <label for="exampleInputEmail1"></label>
@@ -106,38 +112,27 @@
             <br/><br/><br/>
             <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
             <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
+            <div class ="confirm">${message}</div>
             <div class="bootstrap-iso">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-auto">
-                            <form method="post">
+                            <form action="/logged/trails/getActivityId" method="get">
                                 <div class="flex-container">
                                     <div class="form-group flex-item">
                                         <label class="control-label " for="name">
-                                            Odbiorca
+                                            Podaj ID aktywności z której chcesz utworzyć nową trasę
                                         </label>
-                                        <input type="email" value="${message.sender.email}" name="email" class="form-control">
-                                    </div>
-                                    <div class="form-group flex-item">
-                                        <label class="control-label requiredField" >
-                                            Temat
-                                        </label>
-                                        <input type="text" cols="70" class="form-control" name="title" value="RE: ${message.title}">
-                                    </div>
-                                    <div class="form-group flex-item">
-                                        <label class="control-label requiredField" >
-                                            Treść
-                                        </label>
-                                        <textarea name="text" cols="70" rows="10" class="form-control"name="text">${message.text}</textarea>
+                                        <input type="number" name="activityId" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div>
+
                                         <button class="btn btn-success btn-sm my-2 my-sm-0" name="submit" type="submit">
-                                            Odpowiedz
+                                            Wyślij
                                         </button>
+                                    <br/>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -146,7 +141,7 @@
         </div>
     </div>
 </div>
-<!-- /#page-content-wrapper -->
+    <!-- /#page-content-wrapper -->
 
 
 

@@ -100,22 +100,19 @@
             <br/>
             </li>
             <li>
-                <a href="/logged/trails/view">Trasy</a>
+                <a href="/logged/trails/view">Trasy<i class="fas fa-map-marked-alt"></i></a>
             </li>
             <li>
-                <a href="#">Overview</a>
+                <a href="/logged/trails/favTrails">Ulubione Trasy<i class="fas fa-map-marked-alt"></i></a>
             </li>
             <li>
-                <a href="#">Events</a>
+                <a href="/logged/ranks/">Rangi<i class="fas fa-certificate"></i></a>
             </li>
             <li>
-                <a href="#">About</a>
+                <a href="/logged/townsCities/viewAll/">Miasta i Szczyty<i class="fas fa-city"></i><i class="fas fa-mountain"></i></a>
             </li>
             <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="/logged/authorizeStrava" id="strava">Strava <i class="fab fa-strava"></i></a>
+                <a href="/logged/authorizeStrava" id="strava">Połącz z Strava<i class="fab fa-strava"></i></a>
             </li>
             <li style="background: black;">
                 <label for="exampleInputEmail1"></label>

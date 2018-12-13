@@ -3,19 +3,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
 
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>new Message</title>
+    <title>Add Trail</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="https://use.fontawesome.com/releases/v5.5.0/css/all.css"/>"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
 
@@ -23,23 +23,44 @@
 
 </head>
 <style>
+
     .btn {
         background-color: #28a745;
         border: none;
         color: white;
         padding: 6px 12px;
-        font-size: 16px;
+        font-size: 12px;
         cursor: pointer;
     }
-
-    /* Darker background on mouse-over */
     .btn:hover {
         background-color: green;
     }
+    .fa-strava {
+        color: red;
+        size: 22px;
+        font-size: 16px;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    #strava {
+        font-size: 16px;
+    }
+    .messages {
+        color: red;
+    }
+    .tableTitle {
+        text-align: right;
+        padding: 16px;
+        font-size: 22px;
+        font: bold;
+        color: #1b1e21;
+    }
+
 </style>
 
-<body>
 
+<body>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -57,7 +78,7 @@
                     <a class="nav-link" href="/challanges">Wyzwania</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</a>
+                    <a class="nav-link" href="/logged/message/received">Wiadomości: <span style="color: #6610f2">${loggedUser.received.size()}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" style="color: #28a745">Wyloguj <i class="fas fa-sign-out-alt"></i></a>
@@ -100,55 +121,52 @@
         </div>
         <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
 
+        <!-- Page Content -->
         <div class="container-fluid">
             <br/><br/><br/>
-            <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-            <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
-            <div class="bootstrap-iso">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-auto">
-                            <form method="post">
-                                <div class="flex-container">
-                                    <div class="form-group flex-item">
-                                        <label class="control-label " for="name">
-                                            Odbiorca
-                                        </label>
-                                        <input type="email" value="${message.sender.email}" name="email" class="form-control">
-                                    </div>
-                                    <div class="form-group flex-item">
-                                        <label class="control-label requiredField" >
-                                            Temat
-                                        </label>
-                                        <input type="text" cols="70" class="form-control" name="title" value="RE: ${message.title}">
-                                    </div>
-                                    <div class="form-group flex-item">
-                                        <label class="control-label requiredField" >
-                                            Treść
-                                        </label>
-                                        <textarea name="text" cols="70" rows="10" class="form-control"name="text">${message.text}</textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div>
-                                        <button class="btn btn-success btn-sm my-2 my-sm-0" name="submit" type="submit">
-                                            Odpowiedz
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}, liczba punktów ${loggedUser.points}</p>
+            <span><a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
+               <a href="/logged/trails/addTrail" class="btn btn-success btn-xs">Utwórz trasę</a>
+                <a href="/logged/trails/addStravaTrail" style="background-color: black" class="btn btn-success btn-xs">Utwórz trasę <span style = "color: red">Strava</span> <i class="fab fa-strava"></i></a>
+            </span>
+
+        </div>
+        <div class="messages">${successMsg}</div>
+        <table class="table table-hover">
+            <div class="tableTitle">Top 5 trasy</div>
+            <thead>
+            <tr>
+                <th>Ranking</th>
+                <th>Nazwa</th>
+                <th>Długość (km)</th>
+                <th>Suma przewyższeń (m)</th>
+                <th>Typ</th>
+                <th>Stopień trudności</th>
+                <th>Opcje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${mountainTrails}" var="trail">
+                <tr>
+                    <td>${trail.rating}</td>
+                    <td>${trail.name}</td>
+                    <td>${trail.length} km</td>
+                    <td>${trail.uphill} m</td>
+                    <td>${trail.type}</td>
+                    <td>${trail.difficluty}</td>
+                    <td><a href="/logged/trails/deleteTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i></a>
+                        <a href="/logged/trails/likeTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i></a>
+                        <a href="/logged/trails/trailDetails/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-info-circle"></i></a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+
+        </table>
         </div>
     </div>
+    <!-- /#page-content-wrapper -->
 </div>
-<!-- /#page-content-wrapper -->
-
-
 
 <script src="<c:url value="/resources/static/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/static/js/bootstrap.bundle.min.js"/>"></script>
@@ -158,7 +176,5 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-
 </script>
 </body>
-</html>

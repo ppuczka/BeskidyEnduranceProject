@@ -28,10 +28,10 @@ public class Trail {
     private String name;
 
     @NotNull(message = "Pole nie może być puste")
-    private Double length;
+    private Float length;
 
     @NotNull(message = "Pole nie może być puste")
-    private Integer uphill;
+    private Float uphill;
 
     @NotEmpty(message = "Pole nie może być puste")
     @Size(max = 50)

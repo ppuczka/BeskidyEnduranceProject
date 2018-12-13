@@ -20,8 +20,6 @@ import pl.coderslab.beskidyenduranceproject.repository.TrailRepository;
 import pl.coderslab.beskidyenduranceproject.repository.UserRepository;
 import pl.coderslab.beskidyenduranceproject.service.StravaApiService;
 import pl.coderslab.beskidyenduranceproject.service.UserService;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
