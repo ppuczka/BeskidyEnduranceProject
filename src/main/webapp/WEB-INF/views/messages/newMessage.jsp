@@ -22,26 +22,6 @@
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
-<style>
-    .btn {
-        background-color: #28a745;
-        border: none;
-        color: white;
-        padding: 6px 12px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .confirm {
-        color: red;
-    }
-
-    /* Darker background on mouse-over */
-    .btn:hover {
-        background-color: green;
-    }
-</style>
-
 <body>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">

@@ -1,11 +1,7 @@
 package pl.coderslab.beskidyenduranceproject.controller;
 
 
-import javastrava.api.async.StravaAPIFuture;
 import javastrava.model.StravaActivity;
-import javastrava.model.StravaStatistics;
-import javastrava.model.StravaStatisticsEntry;
-import javastrava.service.Strava;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -201,8 +197,32 @@ public class TrailController {
         return "trailDetails";
     }
 
+    @RequestMapping(value = "/searchTrails", method = RequestMethod.POST)
+    public String searchTrail(@RequestParam String search, Model model) {
+        List<Trail> foundTownTrails = trailRepository.getAllByTownsNameContainingIgnoreCase(search);
+        List<Trail> foundMountainTrails = trailRepository.getAllByMountainsNameContainingIgnoreCase(search);
+        List<Trail> allFoundTrails = new ArrayList<>();
+        System.out.println(foundTownTrails.size() + foundMountainTrails.size());
+
+        if (foundMountainTrails.size() == 0) {
+            allFoundTrails.addAll(foundTownTrails);
+            model.addAttribute("trails", allFoundTrails);
+            return "search";
+
+        }else if(foundMountainTrails.size() != 0)  {
+            allFoundTrails.addAll(foundMountainTrails);
+            model.addAttribute("trails", allFoundTrails);
+            return "search";
+
+        } else {
+            allFoundTrails.addAll(foundTownTrails);
+            allFoundTrails.addAll(foundMountainTrails);
+            model.addAttribute("trails", allFoundTrails);
+            return "search";
+        }
 
 
+    }
 
     @ModelAttribute("towns")
     public Collection<Town> populatedTowns() {

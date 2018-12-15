@@ -13,11 +13,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="https://use.fontawesome.com/releases/v5.5.0/css/all.css"/>"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
+
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
@@ -82,40 +83,18 @@
     </div>
     <!-- /#sidebar-wrapper -->
 
-
     <!-- Page Content -->
     <div class="container-fluid">
         <br/><br/><br/>
-        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-        <span><a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
-               <a href="/logged/message/create" class="btn btn-success btn-xs">Utwórz wiadomość</a> </span>
-        <br/><br/>
-        <h3>Otrzymane wiadomości</h3><br/>
-        <p class="confirm">${confirm}</p>
+        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}, liczba punktów ${loggedUser.points}</p>
+        <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
+        <div class="messages">${stravaConnectMsg}</div>
     </div>
-            <table class="table table-hover">
-            <thead>
-            <tr>
-            <th>Nadawca </th>
-            <th>Temat</th>
-            <th>Data utwożenia</th>
-            <th>Opcje</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <c:forEach items="${received}" var="msg">
-            <tr>
-            <td>${msg.sender.email}</td>
-            <td>${msg.title}</td>
-            <td>${msg.created}</td>
-            <td><a href="/logged/message/view/${msg.messageId}" class="btn"><i class="fas fa-eye"></i></a>
-                <a href="/logged/message/respond/${msg.messageId}" class="btn"><i class="fas fa-share-square"></i></a>
-                <a href="/logged/message/delete/${msg.messageId}" class="btn"><i class="fa fa-trash"></i></a></td>
-            </tr>
-            </c:forEach>
-            </tbody>
-            </table>
+    <div>
+        <div class="title"><b>Twoja obecna ranga to: </b> <span class="rank"> ${loggedUser.rank.name}</span></div><br>
+        <span class="description"><b>Następna ranga: <span class="rank"> ${nextRank.name}</b></span></div>
+    <div class="description"><b>Brakuje Ci:<span class="rank"> ${reqPoints} </span> </b>punktów</div>
+    </div>
     </div>
     <!-- /#page-content-wrapper -->
 </div>
@@ -131,4 +110,3 @@
 </script>
 </body>
 </html>
-

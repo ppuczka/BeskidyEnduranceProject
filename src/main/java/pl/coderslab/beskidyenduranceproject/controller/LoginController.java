@@ -46,7 +46,6 @@ public class LoginController {
 
     }
 
-    // error do widoku
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createNewUser(@Valid User user, BindingResult result, Model model) throws Exception {
@@ -58,6 +57,7 @@ public class LoginController {
         if(result.hasErrors()) {
             return "forms/register";
         } else {
+
             userService.saveUser(user);
             emailSerivice.sendRegistrationEmail(user);
             model.addAttribute("successMessage", "Użytkownik został zarejetrowany, otrzymasz email z potwierdzeniem");

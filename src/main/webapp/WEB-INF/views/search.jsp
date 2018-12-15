@@ -9,18 +9,61 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Main Page</title>
+    <title>Search</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="https://use.fontawesome.com/releases/v5.5.0/css/all.css"/>"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
+
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
+<style>
+    /* Darker background on mouse-over */
+
+    .btn {
+        background-color: #28a745;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: green;
+    }
+    .fa-strava {
+        color: red;
+        size: 22px;
+        font-size: 16px;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    #strava {
+        font-size: 16px;
+    }
+    .messages {
+        color: red;
+    }
+    .tableTitle {
+        text-align: right;
+        padding: 16px;
+        font-size: 22px;
+        font: bold;
+        color: #1b1e21;
+    }
+
+    .fa-envelope {
+        color: #28a745;
+    }
+</style>
+
+
 <body>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -54,7 +97,7 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <br/>
+            <br/>
             </li>
             <li>
                 <a href="/logged/trails/view">Trasy<i class="fas fa-map-marked-alt"></i></a>
@@ -73,10 +116,10 @@
             </li>
             <li style="background: black;">
                 <label for="exampleInputEmail1"></label>
-                <form method="get" action="/logged/search" class="form-control" style="background: black">
-                    <input type="text" placeholder="Wyszukiwanie..." class="form-control" id="exampleInputEmail1"/><br/>
-                    <input type="submit" value="Wyszukaj" class="btn btn-success btn-xs"/>
-                </form>
+            <form method="get" action="/logged/trails/searchTrails/?" class="form-control" style="background: black">
+                <input type="text" placeholder="Wyszukiwanie..." class="form-control" id="exampleInputEmail1"/><br/>
+                <input type="submit" href="" value="Wyszukaj" class="btn btn-success btn-xs"/>
+            </form>
             </li>
         </ul>
     </div>
@@ -86,37 +129,41 @@
     <!-- Page Content -->
     <div class="container-fluid">
         <br/><br/><br/>
-        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}</p>
-        <span><a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
-               <a href="/logged/message/create" class="btn btn-success btn-xs">Utwórz wiadomość</a> </span>
-        <br/><br/>
-        <h3>Otrzymane wiadomości</h3><br/>
-        <p class="confirm">${confirm}</p>
+        <p class="logged" style="text-align: right">Witaj ${loggedUser.firstName}, liczba punktów ${loggedUser.points}</p>
+        <a href="#menu-toggle" class="btn btn-success btn-xs" id="menu-toggle">Menu</a>
     </div>
-            <table class="table table-hover">
-            <thead>
-            <tr>
-            <th>Nadawca </th>
-            <th>Temat</th>
-            <th>Data utwożenia</th>
+    <div class="messages">${stravaConnectMsg}</div>
+        <div class="messages">${successMsg}</div>
+    <table class="table table-hover">
+        <div class="tableTitle">Wyniki wyszukiwania</div>
+        <thead>
+        <tr>
+            <th>Ranking</th>
+            <th>Nazwa</th>
+            <th>Długość (km)</th>
+            <th>Suma przewyższeń (m)</th>
+            <th>Typ</th>
+            <th>Stopień trudności</th>
             <th>Opcje</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <c:forEach items="${received}" var="msg">
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${trails}" var="trail">
             <tr>
-            <td>${msg.sender.email}</td>
-            <td>${msg.title}</td>
-            <td>${msg.created}</td>
-            <td><a href="/logged/message/view/${msg.messageId}" class="btn"><i class="fas fa-eye"></i></a>
-                <a href="/logged/message/respond/${msg.messageId}" class="btn"><i class="fas fa-share-square"></i></a>
-                <a href="/logged/message/delete/${msg.messageId}" class="btn"><i class="fa fa-trash"></i></a></td>
+                <td>${trail.rating}</td>
+                <td>${trail.name}</td>
+                <td>${trail.length} km</td>
+                <td>${trail.uphill} m</td>
+                <td>${trail.type}</td>
+                <td>${trail.difficluty}</td>
+                <td><a href="/logged/trails/deleteTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i></a>
+                    <a href="/logged/trails/likeTrail/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i></a>
+                    <a href="/logged/trails/trailDetails/${trail.trailId}" role = "button" class="btn btn-primary btn-sm"><i class="fas fa-info-circle"></i></a></td>
             </tr>
-            </c:forEach>
-            </tbody>
-            </table>
-    </div>
+        </c:forEach>
+        </tbody>
+
+    </table>
     <!-- /#page-content-wrapper -->
 </div>
 
@@ -131,4 +178,3 @@
 </script>
 </body>
 </html>
-

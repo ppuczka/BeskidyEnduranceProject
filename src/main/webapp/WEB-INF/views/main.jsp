@@ -116,8 +116,8 @@
             </li>
             <li style="background: black;">
                 <label for="exampleInputEmail1"></label>
-            <form method="get" action="/logged/search" class="form-control" style="background: black">
-                <input type="text" placeholder="Wyszukiwanie..." class="form-control" id="exampleInputEmail1"/><br/>
+            <form method="post" action="/logged/trails/searchTrails" class="form-control" style="background: black">
+                <input type="text" name="search" placeholder="Wyszukiwanie..." class="form-control" id="exampleInputEmail1"/><br/>
                 <input type="submit" value="Wyszukaj" class="btn btn-success btn-xs"/>
             </form>
             </li>

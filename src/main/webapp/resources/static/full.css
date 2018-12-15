@@ -5,7 +5,7 @@
  */
 
 body {
-  background: url('/resources/img/eyeem-79940351.jpg') no-repeat center center fixed;
+  background: url('/resources/img/asoggetti-296380-unsplash.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -31,5 +31,71 @@ body {
   align-self: center;
   margin: 0 auto;
 }
+
+.table {
+  background-color: lightgray;
+  color: black;
+
+}
+
+.rank {
+  color: #c82333;
+}
+
+
+.btn {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: green;
+}
+.fa-strava {
+  color: red;
+  size: 22px;
+  font-size: 16px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#strava {
+  font-size: 16px;
+}
+.messages {
+  color: red;
+}
+.title {
+  font-size: 24px;
+}
+
+.fa-strava {
+  color: red;
+  size: 22px;
+  font-size: 16px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.tableTitle {
+  text-align: right;
+  padding: 16px;
+  font-size: 22px;
+  font: bold;
+  color: #1b1e21;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.confirm {
+  color: red;
+}
+
 
 

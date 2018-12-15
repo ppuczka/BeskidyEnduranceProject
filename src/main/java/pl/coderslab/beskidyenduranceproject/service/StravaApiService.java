@@ -1,14 +1,13 @@
 package pl.coderslab.beskidyenduranceproject.service;
 
-
 import javastrava.api.API;
-import javastrava.api.ActivityAPI;
 import javastrava.api.AuthorisationAPI;
 import javastrava.auth.model.Token;
 import javastrava.auth.model.TokenResponse;
-import javastrava.model.*;
+import javastrava.model.StravaActivity;
+import javastrava.model.StravaAthlete;
+import javastrava.model.StravaStatistics;
 import pl.coderslab.beskidyenduranceproject.entity.User;
-
 
 public class StravaApiService {
 
@@ -37,7 +36,6 @@ public class StravaApiService {
         TokenResponse resposne = auth.tokenExchange(user.getStravaClientId(), user.getStravaClientSecret(), user.getStravaCode());
         Token token  = new Token(resposne);
         API api = new API(token);
-
         StravaActivity activity = api.getActivity(id, true);
         return activity;
     }

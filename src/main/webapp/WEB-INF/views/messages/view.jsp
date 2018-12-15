@@ -21,35 +21,6 @@
     <link href="<c:url value="/resources/static/simple-sidebar.css"/>" rel="stylesheet">
 
 </head>
-<style>
-
-    .btn {
-        background-color: #28a745;
-        border: none;
-        color: white;
-        padding: 6px 12px;
-        font-size: 12px;
-        cursor: pointer;
-    }
-    
-    /* Darker background on mouse-over */
-    .btn:hover {
-        background-color: green;
-    }
-    .text-area {
-        padding: 10px;
-        margin-bottom: 15px;
-    }
-
-    #menu-toggle {
-        padding-bottom: 10px;
-    }
-    
-
-    
-</style>
-
-
 <body>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">

@@ -20,18 +20,6 @@
     <link href="<c:url value="/resources/static/full.css" />" rel="stylesheet">
 
 </head>
-<style>
-
-.btn {
-background-color: #28a745;
-border: none;
-color: white;
-padding: 12px 16px;
-font-size: 12px;
-cursor: pointer;
-}
-
-</style>
 
 <body>
 

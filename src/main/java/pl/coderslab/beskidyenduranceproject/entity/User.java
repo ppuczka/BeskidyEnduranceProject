@@ -62,6 +62,9 @@ public class User {
     @OneToMany(mappedBy = "receiver")
     private List<Message> received = new ArrayList<>();
 
+    @ManyToOne
+    private Rank rank;
+
     private Float points;
 
     private boolean strava;
@@ -73,7 +76,5 @@ public class User {
     private String stravaCode;
 
     private Integer stravaAthleteId;
-
-
 
 }

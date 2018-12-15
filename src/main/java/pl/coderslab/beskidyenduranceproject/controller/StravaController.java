@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.beskidyenduranceproject.entity.Trail;
 import pl.coderslab.beskidyenduranceproject.entity.User;
 import pl.coderslab.beskidyenduranceproject.repository.MountainRepository;
 import pl.coderslab.beskidyenduranceproject.repository.TownRepository;
@@ -19,6 +20,7 @@ import pl.coderslab.beskidyenduranceproject.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/logged")
@@ -52,6 +54,10 @@ public class StravaController {
         User loggedUser = (User) session.getAttribute("loggedUser");
         if (loggedUser.isStrava() == true) {
             model.addAttribute("successMsg", "Już połączyłeś konto Strava");
+            List<User> users = userRepository.findFirst5ByOrderByPointsDesc();
+            List<Trail> trails= trailRepository.findFirst5ByOrderByRatingDesc();
+            model.addAttribute("trails", trails);
+            model.addAttribute("users", users);
             return "/main";
         }
         User user = new User();

@@ -51,9 +51,7 @@
     .messages {
         color: red;
     }
-    .title {
-        font-size: 24px;
-    }
+
 </style>
 
 
