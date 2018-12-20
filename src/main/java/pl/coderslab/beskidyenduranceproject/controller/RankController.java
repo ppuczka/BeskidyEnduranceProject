@@ -36,7 +36,7 @@ public class RankController {
 
         List<Rank> ranks = rankRepository.findAll();
 
-            for(int i = 0; i<=ranks.size(); i++) {
+            for(int i = 0; i<=ranks.size(); i++)  {
                 if((usrPoints >= ranks.get(i).getMinReqPoints()) && (usrPoints <= ranks.get(i).getMaxReqPoints())) {
                     loggedUser.setRank(ranks.get(i));
                     userRepository.save(loggedUser);
