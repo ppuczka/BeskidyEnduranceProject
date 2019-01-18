@@ -9,8 +9,5 @@ public class RankControllerTest {
     @Test
     public void viewMyRank() {
 
-        public void hello() {
-
         }
     }
-}
