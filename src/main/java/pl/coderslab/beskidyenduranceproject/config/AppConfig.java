@@ -18,16 +18,10 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-//        registry.addConverter(getStringToIntegerConverter());
         registry.addConverter(getMountainConverter());
         registry.addConverter(getTownConverter());
         registry.addConverter(getMessageConverter());
     }
-
-//    @Bean
-//    public StringToIntegerConverter getStringToIntegerConverter() {
-//        return new StringToIntegerConverter();
-//    }
 
     @Bean
     public StravaApiService getStravaApiService() {
